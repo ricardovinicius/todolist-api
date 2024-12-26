@@ -1,9 +1,9 @@
-package com.ricardo.todo.security;
+package com.ricardo.todo.controllers;
 
+import com.ricardo.todo.dtos.LoginRequestDTO;
+import com.ricardo.todo.services.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,32 +15,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class LoginController {
-    private final AuthenticationManager authenticationManager;
+public class AuthController {
+    private final AuthService authService;
     private final SecurityContextHolderStrategy securityContextHolderStrategy =
             SecurityContextHolder.getContextHolderStrategy();
-    private SecurityContextRepository securityContextRepository =
+    private final SecurityContextRepository securityContextRepository =
             new HttpSessionSecurityContextRepository();
 
 
-    public LoginController(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
-    @PostMapping("/login")
-    public void login(@RequestBody LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response) {
-        Authentication authenticationRequest =
-                UsernamePasswordAuthenticationToken.unauthenticated(
-                        loginRequest.username(), loginRequest.password()
-                );
-        Authentication authenticationResponse =
-                this.authenticationManager.authenticate(authenticationRequest);
-
+    private void saveNewSecurityContext(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
         SecurityContext context = this.securityContextHolderStrategy.createEmptyContext();
-        context.setAuthentication(authenticationResponse);
+        context.setAuthentication(authentication);
         this.securityContextHolderStrategy.setContext(context);
         this.securityContextRepository.saveContext(context, request, response);
     }
 
-    public record LoginRequest(String username, String password) {}
+    @PostMapping("/login")
+    public void login(@RequestBody LoginRequestDTO loginRequest, HttpServletRequest request, HttpServletResponse response) {
+        Authentication authenticationResponse = authService.login(loginRequest);
+
+        saveNewSecurityContext(authenticationResponse, request, response);
+    }
 }

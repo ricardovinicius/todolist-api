@@ -1,4 +1,4 @@
-package com.ricardo.todo.security;
+package com.ricardo.todo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
