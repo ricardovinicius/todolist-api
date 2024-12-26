@@ -1,6 +1,5 @@
 package com.ricardo.todo.services;
 
-import com.ricardo.todo.controllers.AuthController;
 import com.ricardo.todo.dtos.LoginRequestDTO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

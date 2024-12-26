@@ -42,7 +42,8 @@ public class SecurityConfig {
         return new ProviderManager(authenticationProvider);
     }
 
-    @Bean
+    // Old InMemory UserDetailsService implementation, see: https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/index.html
+    /* @Bean
     public UserDetailsService userDetailsService() {
         UserDetails userDetails = User.withDefaultPasswordEncoder()
                 .username("user")
@@ -51,7 +52,7 @@ public class SecurityConfig {
                 .build();
 
         return new InMemoryUserDetailsManager(userDetails);
-    }
+    } */
 
     @Bean
     public PasswordEncoder passwordEncoder() {

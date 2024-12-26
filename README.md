@@ -27,6 +27,10 @@ https://www.youtube.com/watch?v=LX5jaieOIAk
 - https://www.geeksforgeeks.org/spring-boot-architecture/
 - https://www.baeldung.com/hexagonal-architecture-ddd-spring
 
+## Spring Data and JPA
+
+- https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.jpa-and-spring-data
+
 ## User Management and Authentication
 
 - https://spring.io/guides/gs/securing-web
@@ -44,3 +48,39 @@ https://www.youtube.com/watch?v=LX5jaieOIAk
 7. Learn how to store SessionManagement (https://docs.spring.io/spring-security/reference/servlet/authentication/session-management.html#store-authentication-manually)
 8. Implement the custom SessionManagement (https://docs.spring.io/spring-security/reference/servlet/authentication/session-management.html#use-securitycontextholderstrategy)
 
+### Storage User Credentials 
+
+Create a custom UserDetailsService and retrieve User from database
+
+General Documentation: https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/storage.html
+
+Base Tutorial: https://www.baeldung.com/spring-security-authentication-with-a-database
+
+About UserDetailsService: 
+- https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetailsService.html
+- https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/user-details-service.html
+
+About UserDetails:
+- https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/user-details.html
+- https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetails.html
+- Base Impl of User Details of Spring: https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/User.html
+
+About Password Encoding:
+- https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/in-memory.html
+
+About Password Erasure:
+- https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/credentials-container.html
+- https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/erasure.html
+
+1. Create a custom UserDetailsService that serves custom UserDetails (https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/user-details-service.html)
+2. Create a User entity on DB that stores Username and Password (see also: [Spring Data and JPA](#Spring-Data-and-JPA))
+3. Create a custom implementation of UserDetails that retrieves from User
+4. Expose new UserDetailsService as a Bean
+
+>  ### Note: 
+> This can be done by expose an implementation of UserDetailsService as a @Service, or as a @Bean that returns the custom implementation of UserDetailsService
+
+Next Steps:
+Write an implementation of User creation, paying attention to password encoding and storage:
+- https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage-boot-cli
+- https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/password-encoder.html

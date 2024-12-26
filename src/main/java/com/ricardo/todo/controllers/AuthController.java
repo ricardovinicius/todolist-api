@@ -27,6 +27,10 @@ public class AuthController {
         this.authService = authService;
     }
 
+
+    /**
+     see also: <a href="https://docs.spring.io/spring-security/reference/servlet/authentication/session-management.html#store-authentication-manually">Spring Security Documentation</a>
+     */
     private void saveNewSecurityContext(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
         SecurityContext context = this.securityContextHolderStrategy.createEmptyContext();
         context.setAuthentication(authentication);
