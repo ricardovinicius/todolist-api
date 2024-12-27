@@ -4,8 +4,7 @@ import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 // TODO: Try to implement a single entity that implements UserDetails and CredentialsContainer instead of this
 // TODO: Explore the Roles and Authorities implementations
@@ -18,7 +17,13 @@ public class UserDetailsImpl implements UserDetails, CredentialsContainer {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        GrantedAuthority authority = () -> user.getRole().name();
+
+        return new HashSet<>(List.of(authority));
+    }
+
+    public Long getId() {
+        return user.getId();
     }
 
     @Override

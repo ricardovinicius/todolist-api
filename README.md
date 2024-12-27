@@ -84,3 +84,23 @@ Next Steps:
 Write an implementation of User creation, paying attention to password encoding and storage:
 - https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage-boot-cli
 - https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/password-encoder.html
+Also do the Spring create an admin user at startup
+
+### Authorization
+
+I am using method based authorization:
+https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html
+
+# REST API
+
+How to create a Controller:
+https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller.html
+
+How to get mapped RequestBody:
+https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html
+
+## Error Handling and Validation
+
+https://www.baeldung.com/exception-handling-for-rest-with-spring
+https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc
+https://medium.com/paysafe-bulgaria/springboot-dto-validation-good-practices-and-breakdown-fee69277b3b0

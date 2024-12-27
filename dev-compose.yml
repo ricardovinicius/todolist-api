@@ -7,5 +7,5 @@ services:
       - '14932:5432'
     environment:
       - 'POSTGRES_USER=admin'
-      - 'POSTGRES_DB=todolist-db'
+      - 'POSTGRES_DB=todolist'
       - 'POSTGRES_PASSWORD=admin'
