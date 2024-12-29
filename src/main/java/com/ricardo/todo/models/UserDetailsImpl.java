@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
 // TODO: Try to implement a single entity that implements UserDetails and CredentialsContainer instead of this
-// TODO: Explore the Roles and Authorities implementations
 public class UserDetailsImpl implements UserDetails, CredentialsContainer {
     private final User user;
 

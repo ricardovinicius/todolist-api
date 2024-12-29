@@ -3,7 +3,6 @@ package com.ricardo.todo.services;
 import com.ricardo.todo.dtos.UserCreateDTO;
 import com.ricardo.todo.models.User;
 import com.ricardo.todo.repositories.UserRepository;
-import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
