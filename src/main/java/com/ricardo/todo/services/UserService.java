@@ -24,7 +24,7 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    @PreAuthorize("#id == principal.id || hasRole('ADMIN')")
+    @PreAuthorize("#id == authentication.principal.id || hasRole('ADMIN')")
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
